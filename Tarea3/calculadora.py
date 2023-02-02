@@ -20,7 +20,7 @@ while not Salir:
             numlist.append(Numeros)           
             # elif not numlist:
             # print("Numeros sin valor: resultado = null")        
-            resultado = sum(numlist)
+        resultado = sum(numlist)
         # num1 = int(input("Primer digito"))
         # num2 = int(input("Segundo digito"))
         import os
