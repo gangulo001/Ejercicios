@@ -1,0 +1,18 @@
+Operacion SumaEl resultado de la suma de[1, 2, 3]es6
+Operacion Suma El resultado de la suma de [1, 2, 3] es 6
+Operacion Resta: El resultado de la resta de 2 - 2 es 0
+Operacion Multiplicacion: El resultado de la multiplicacion de [1, 2, 3] es 6
+2023-02-09 00:38:58.397646 Operacion Suma: El resultado de la suma de [1, 2, 3] es 6
+2023-02-09 00:49:07.100077 Operacion Suma: El resultado de la suma de [1, 2, 3] es 6
+2023-02-09 00:49:07.100077 Operacion Resta: El resultado de la resta de 1 - 2 es -1
+2023-02-09 00:49:07.100077 Operacion Multiplicacion: El resultado de la multiplicacion de [1, 2, 3] es 6
+2023-02-09 00:49:07.100077 Operacion Division: El resultado de la division de 4 / 2 es 2.0
+2023-02-09 00:49:07.100077 Operacion Factorial: El factorial de 5 es 120
+2023-02-09 00:49:07.100077 Operacion Potencia: El resultado del numero 5 elevado a la potencia 2 es 25
+2023-02-09 00:59:35.574568 Programa abierto2023-02-09 00:59:35.293516 Operacion Potencia: El resultado del numero 5 elevado a la potencia 5 es 3125
+2023-02-09 00:59:35.574568 Programa cerrado2023-02-09 01:01:27.300967 Programa abierto
+2023-02-09 01:01:27.038661 Operacion Potencia: El resultado del numero 2 elevado a la potencia 2 es 4
+2023-02-09 01:01:27.300967 Programa cerrado
+2023-02-09 01:02:14.343093 Programa abierto
+2023-02-09 01:02:14.081749 Operacion Factorial: El factorial de 2 es 2
+2023-02-09 01:02:14.343093 Programa cerrado

@@ -1,8 +1,11 @@
 import os
 import modulo_arit
 os.system('cls')
-
+import datetime
+now = datetime.datetime.now()
 file = open("logfile.txt","a")
+file.write(str(now) + " Programa abierto" + "\n")
+file.close()
 
 Salir = False
 
@@ -96,8 +99,9 @@ while not Salir:
         # print("El resultado del numero",num1,"elevado a la potencia",num2,"es",resultado,"\n")
 
     elif operacion == 7:
+        file = open("logfile.txt","a")
+        file.write(str(now) + " Programa cerrado" + "\n")
+        file.close()
         os.system('cls')
         print("Gracias por usar la calculadora\n")
         Salir = True
-
-file.close()
