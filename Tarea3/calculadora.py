@@ -2,6 +2,8 @@ import os
 import modulo_arit
 os.system('cls')
 
+file = open("logfile.txt","a")
+
 Salir = False
 
 while not Salir:
@@ -98,3 +100,4 @@ while not Salir:
         print("Gracias por usar la calculadora\n")
         Salir = True
 
+file.close()
