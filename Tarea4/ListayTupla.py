@@ -8,8 +8,14 @@
 
 secuencia = input("Digite una secuencia de numeros separados por coma: \n")
 
+
+# def listatupla(secuencia):
+    
 mylist = []
 for numero in secuencia:
     mylist.append(numero)
 my_new_list = [numero for numero in mylist if numero != ","]
-print(" Resultado:\n", "Lista: ", my_new_list)
+print("Resultado:\n", "Lista: ", my_new_list)
+
+mytuple = tuple(my_new_list)
+print("Tupla: ", mytuple)
