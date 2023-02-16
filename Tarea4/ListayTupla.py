@@ -9,20 +9,17 @@
 secuencia = input("Digite una secuencia de numeros separados por coma: \n")
 
 def listatupla(secuencia):
-    
-    mylist = []
-    for numero in secuencia:
-        mylist.append(numero)
-    my_new_list = [numero for numero in mylist if numero != ","]
-    print("Resultado:\n", "Lista: ", my_new_list)
-    mytuple = tuple(my_new_list)
+    mylist = secuencia.split()
+    print("Resultado:\n", "Lista: ", mylist)
+    mytuple = tuple(mylist)
     print("Tupla: ", mytuple)
+
+
+listatupla(secuencia)
 
 #   Prueba 1:
 # 1
 #   Prueba 2:
 # 1,2,3,4
 #   Prueba 3:
-# 5,6,7
-
-listatupla(secuencia)
+# 50,6,7000
