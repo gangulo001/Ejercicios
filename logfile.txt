@@ -1,0 +1,5 @@
+2023-02-26 16:58:26.410025 Programa abierto
+2023-02-26 16:58:26.410025 Programa cerrado
+2023-02-26 16:58:46.350054 Programa abierto
+2023-02-26 16:58:46.110098 Operacion Suma: El resultado de la suma de [1, 2] es 3
+2023-02-26 16:58:46.350054 Programa cerrado

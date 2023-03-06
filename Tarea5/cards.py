@@ -1,8 +1,5 @@
-# Cards Module
-# Basic classes for a game with playing cards
-
 class Card(object):
-    """ A playing card. """
+    
     RANKS = ["A", "2", "3", "4", "5", "6", "7","8", "9", "10", "J", "Q", "K"]
     SUITS = ["♠", "♣", "♦", "♥"]
 
@@ -22,7 +19,7 @@ class Card(object):
         self.is_face_up = not self.is_face_up
       
 class Hand(object):
-    """ A hand of playing cards. """
+    
     def __init__(self):
         self.cards = []
 
@@ -46,7 +43,7 @@ class Hand(object):
         other_hand.add(card)
 
 class Deck(Hand):
-    """ A deck of playing cards. """
+   
     def populate(self):
         for suit in Card.SUITS:
             for rank in Card.RANKS: 
@@ -63,10 +60,5 @@ class Deck(Hand):
                     top_card = self.cards[0]
                     self.give(top_card, hand)
                 else:
-                    print("Can't continue deal. Out of cards!")
+                    print("No hay mas cartas para continuar!!!... Por favor reinicie el juego")
 
-
-
-if __name__ == "__main__":
-    print("This is a module with classes for playing cards.")
-    input("\n\nPress the enter key to exit.")

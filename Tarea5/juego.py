@@ -1,15 +1,11 @@
-# Blackjack
-# From 1 to 7 players compete against a dealer
-
-import cards, games     
+import os, cards, games
 
 class BJ_Card(cards.Card):
-    """ A Blackjack Card. """
+    
     ACE_VALUE = 1
 
     @property
     def value(self):
-        #when card is facing up - ensure JQK Values are read as 10
         if self.is_face_up:
             v = BJ_Card.RANKS.index(self.rank) + 1
             if v > 10:
@@ -19,7 +15,7 @@ class BJ_Card(cards.Card):
         return v
 
 class BJ_Deck(cards.Deck):
-    """ A Blackjack Deck. """
+    
     def populate(self):
         for suit in BJ_Card.SUITS: 
             for rank in BJ_Card.RANKS: 
@@ -27,7 +23,7 @@ class BJ_Deck(cards.Deck):
     
 
 class BJ_Hand(cards.Hand):
-    """ A Blackjack Hand. """
+    
     def __init__(self, name):
         super(BJ_Hand, self).__init__()
         self.name = name
@@ -40,60 +36,57 @@ class BJ_Hand(cards.Hand):
 
     @property     
     def total(self):
-        # if a card in the hand has value of None, then total is None
+        
         for card in self.cards:
             if not card.value:
                 return None
         
-        # add up card values, treat each Ace as 1
         t = 0
         for card in self.cards:
-              t += card.value
+            t += card.value
 
-        # determine if hand contains an Ace
+        
         contains_ace = False
         for card in self.cards:
             if card.value == BJ_Card.ACE_VALUE:
-                contains_ace = True
-                
-        # if hand contains Ace and total is low enough, treat Ace as 11
+                contains_ace = True    
+       
         if contains_ace and t <= 11:
-            # add only 10 since we've already added 1 for the Ace
+            
             t += 10   
-                
         return t
-
     def is_busted(self):
         return self.total > 21
 
 
 class BJ_Player(BJ_Hand):
-    """ A Blackjack Player. """
+    
     def is_hitting(self):
-        response = games.ask_yes_no("\n" + self.name + ", do you want a hit? (Y/N): ")
+        response = games.ask_yes_no("\n" + self.name + ", desea otra carta? (Y/N): ")
         return response == "y"
 
     def bust(self):
-        print(self.name, "busts.")
+        print(self.name, "se paso.")
         self.lose()
 
     def lose(self):
-        print(self.name, "loses.")
+        print(self.name, "pierde.")
 
     def win(self):
-        print(self.name, "wins.")
+        print(self.name, "gana.")
+        return(self.name)
 
     def push(self):
-        print(self.name, "pushes.")
+        print(self.name, "empata.")
 
         
 class BJ_Dealer(BJ_Hand):
-    """ A Blackjack Dealer. """
+    
     def is_hitting(self):
-        return self.total < 17
+        return self.total < 19
 
     def bust(self):
-        print(self.name, "busts.")
+        print(self.name, "se paso.")
 
     def flip_first_card(self):
         first_card = self.cards[0]
@@ -101,7 +94,7 @@ class BJ_Dealer(BJ_Hand):
 
 
 class BJ_Game(object):
-    """ A Blackjack Game. """
+    
     def __init__(self, names):      
         self.players = []
         for name in names:
@@ -128,66 +121,108 @@ class BJ_Game(object):
             print(player)
             if player.is_busted():
                 player.bust()
-           
+        
     def play(self):
-        # deal initial 2 cards to everyone
+        
         self.deck.deal(self.players + [self.dealer], per_hand = 2)
-        self.dealer.flip_first_card()    # hide dealer's first card
+        self.dealer.flip_first_card()    
         for player in self.players:
             print(player)
         print(self.dealer)
 
-        # deal additional cards to players
+       
         for player in self.players:
             self.__additional_cards(player)
 
-        self.dealer.flip_first_card()    # reveal dealer's first 
+        self.dealer.flip_first_card()    
 
         if not self.still_playing:
-            # since all players have busted, just show the dealer's hand
+            
             print(self.dealer)
         else:
-            # deal additional cards to dealer
+            
             print(self.dealer)
             self.__additional_cards(self.dealer)
 
             if self.dealer.is_busted():
-                # everyone still playing wins
+                
                 for player in self.still_playing:
-                    player.win()                    
+                    winner = player.win()     
+                    return (winner)               
             else:
-                # compare each player still playing to dealer
+                
                 for player in self.still_playing:
                     if player.total > self.dealer.total:
-                        player.win()
+                        winner = player.win()
+                        return (winner)
                     elif player.total < self.dealer.total:
                         player.lose()
                     else:
                         player.push()
 
-        # remove everyone's cards
+        
         for player in self.players:
             player.clear()
         self.dealer.clear()
         
 
 def main():
-    print("\t\tWelcome to Blackjack!\n")
-    
-    names = []
-    number = games.ask_number("How many players? (1 - 2): ", low = 1, high = 3)
-    for i in range(number):
-        name = input("Enter player name: ")
-        names.append(name)
-    print()
         
     game = BJ_Game(names)
 
-    again = None
-    while again != "n":
-        game.play()
-        again = games.ask_yes_no("\nDo you want to play again?: ")
+    winner = game.play()
+
+    return (winner)
+        
+
+Salir = False
+os.system('cls')
+names = []
+number = games.ask_number("Cuantos usuarios desean jugar? (1 - 2): ", low = 1, high = 3)
+for i in range(number):
+    name = input("Digite el nombre o usuario del jugador: ")
+    names.append(name)
+print()
+
+print("Bienvenido al juego de BLACKJACK\nSus estadisticas de juego seran mostradas cuando desee salir\nUn empate es considerado un gane para la casa")
+if len(names) == 1:
+    print(names[0], ":")
+else:
+    print(names[0], names[1], ":")
+
+contador = 0
+winsPlayer1 = 0
+winsPlayer2 = 0
+
+while not Salir:
+    
 
 
-main()
-input("\n\nPress the enter key to exit.")
+    menu = input("Si desea continuar digite si ('Y')\nSi desea salir del juego digite no ('N')\n")
+
+    if menu == 'y':
+        winner = main() 
+        if winner == names[0]:
+            winsPlayer1 = winsPlayer1 + 1
+        if len(names) == 2:
+            if winner == names[1]:
+                winsPlayer2 = winsPlayer2 + 1
+    
+        contador = contador + 1
+
+        
+    elif menu == 'n':
+        try:
+            os.system('cls')
+            print("\nGracias por jugar BLACKJACK sus estadisticas son:")
+            print(names[0], ":")
+            print("Partidas ganadas: " + str(winsPlayer1) + "    " + str((winsPlayer1 / contador) * 100) + "%")
+            print("Partidas perdidas: " + str(contador - winsPlayer1) + "    " + str(100 - (winsPlayer1 / contador) * 100) + "%")
+            if len(names) == 2:
+                print(names[1], ",")
+                print("Partidas ganadas: " + str(winsPlayer2) + "    " + str((winsPlayer2 / contador) * 100) + "%")
+                print("Partidas perdidas: " + str(contador - winsPlayer2) + "    " + str(100 - (winsPlayer2 / contador) * 100) + "%")
+        
+            Salir = True
+        except:
+            print("Por favor intente de nuevo")
