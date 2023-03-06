@@ -66,18 +66,18 @@ class BJ_Player(BJ_Hand):
         return response == "y"
 
     def bust(self):
-        print(self.name, "se paso.")
+        print(self.name, "SE PASO.")
         self.lose()
 
     def lose(self):
-        print(self.name, "pierde.")
+        print(self.name, "PIERDE.")
 
     def win(self):
-        print(self.name, "gana.")
+        print(self.name, "GANA.")
         return(self.name)
 
     def push(self):
-        print(self.name, "empata.")
+        print(self.name, "EMPATA.")
 
         
 class BJ_Dealer(BJ_Hand):
@@ -198,7 +198,7 @@ while not Salir:
     
 
 
-    menu = input("Si desea continuar digite si ('Y')\nSi desea salir del juego digite no ('N')\n")
+    menu = input("Si desea continuar digite si ('y')\nSi desea salir del juego digite no ('n')\n")
 
     if menu == 'y':
         winner = main() 
@@ -219,7 +219,7 @@ while not Salir:
             print("Partidas ganadas: " + str(winsPlayer1) + "    " + str((winsPlayer1 / contador) * 100) + "%")
             print("Partidas perdidas: " + str(contador - winsPlayer1) + "    " + str(100 - (winsPlayer1 / contador) * 100) + "%")
             if len(names) == 2:
-                print(names[1], ",")
+                print(names[1], ":")
                 print("Partidas ganadas: " + str(winsPlayer2) + "    " + str((winsPlayer2 / contador) * 100) + "%")
                 print("Partidas perdidas: " + str(contador - winsPlayer2) + "    " + str(100 - (winsPlayer2 / contador) * 100) + "%")
         
